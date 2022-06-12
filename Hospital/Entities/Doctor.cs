@@ -15,7 +15,7 @@ namespace Hospital.Entities
 
         public string ContactNumber { get; set; }
 
-        public int IdentificationNumber { get; set; }
+        public string IdentificationNumber { get; set; }
 
         public string Gender { get; set; }
 

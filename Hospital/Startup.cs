@@ -29,6 +29,7 @@ namespace Hospital
         {
             services.AddDbContext<HospitalDbContext>();
             services.AddControllers();
+            services.AddScoped<HospitalSeeder>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hospital", Version = "v1" });
@@ -36,13 +37,13 @@ namespace Hospital
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,HospitalSeeder seeder)
         {
+            seeder.seed();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hospital v1"));
+                
             }
 
             app.UseHttpsRedirection();
